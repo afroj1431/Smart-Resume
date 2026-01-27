@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Developer Resume</title>
+    <style>
+        @page {
+            margin: 0.5in;
+            size: letter;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Calibri', 'Arial', sans-serif;
+            font-size: 11pt;
+            line-height: 1.4;
+            color: #333;
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 15px;
+        }
+        
+        .header h1 {
+            font-size: 24pt;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+        
+        .header .title {
+            font-size: 14pt;
+            color: #555;
+            margin-bottom: 10px;
+        }
+        
+        .header .contact {
+            font-size: 10pt;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .section {
+            margin-bottom: 18px;
+        }
+        
+        .section-title {
+            font-size: 14pt;
+            font-weight: bold;
+            color: #2c3e50;
+            text-transform: uppercase;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 12px;
+        }
+        
+        .summary {
+            text-align: justify;
+            line-height: 1.6;
+        }
+        
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .skill-category {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .skill-category strong {
+            color: #2c3e50;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .project {
+            margin-bottom: 15px;
+        }
+        
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 5px;
+        }
+        
+        .project-name {
+            font-weight: bold;
+            font-size: 12pt;
+            color: #2c3e50;
+        }
+        
+        .project-type {
+            font-style: italic;
+            font-size: 10pt;
+            color: #666;
+        }
+        
+        .project-mentorship {
+            font-size: 9pt;
+            color: #888;
+            font-style: italic;
+            margin-bottom: 5px;
+        }
+        
+        .project-tech {
+            font-size: 10pt;
+            color: #555;
+            margin-bottom: 8px;
+        }
+        
+        .project-description {
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+        
+        .bullet-points {
+            margin-left: 20px;
+            margin-top: 8px;
+        }
+        
+        .bullet-points li {
+            margin-bottom: 6px;
+            line-height: 1.5;
+        }
+        
+        .project-features {
+            margin-top: 8px;
+            font-size: 10pt;
+            color: #555;
+        }
+        
+        .education {
+            margin-bottom: 10px;
+        }
+        
+        .education-degree {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .education-school {
+            color: #555;
+        }
+        
+        .education-year {
+            font-style: italic;
+            color: #666;
+        }
+        
+        .education-coursework {
+            margin-top: 5px;
+            font-size: 10pt;
+            color: #555;
+        }
+        
+        .additional-info {
+            margin-top: 8px;
+        }
+        
+        .additional-info li {
+            margin-bottom: 4px;
+        }
+        
+        .experience {
+            margin-bottom: 15px;
+        }
+        
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 5px;
+        }
+        
+        .experience-title {
+            font-weight: bold;
+            font-size: 12pt;
+            color: #2c3e50;
+        }
+        
+        .experience-company {
+            font-weight: bold;
+            color: #555;
+        }
+        
+        .experience-date {
+            font-style: italic;
+            font-size: 10pt;
+            color: #666;
+        }
+        
+        @media print {
+            body {
+                padding: 0;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>[YOUR FULL NAME]</h1>
+        <div class="title">Frontend / Full Stack Developer</div>
+        <div class="contact">
+            [Your Email] | [Your Phone] | [Your LinkedIn] | [Your GitHub/Portfolio]
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Professional Summary</div>
+        <div class="summary">
+            Results-driven Frontend and Full Stack Developer with experience building modern web applications using React, Node.js, and MongoDB. Passionate about creating user-centric interfaces with clean code architecture. Developed AI-powered resume analysis platform under senior developer mentorship, demonstrating ability to learn quickly and implement complex features. Strong foundation in responsive design, RESTful APIs, and database management. Seeking opportunities to contribute to innovative projects while continuing to grow technical expertise.
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Technical Skills</div>
+        <div class="skills">
+            <div class="skill-category">
+                <strong>Frontend:</strong> React.js, JavaScript (ES6+), HTML5, CSS3, Tailwind CSS, Framer Motion, Responsive Design
+            </div>
+            <div class="skill-category">
+                <strong>Backend:</strong> Node.js, Express.js, RESTful APIs, JWT Authentication
+            </div>
+            <div class="skill-category">
+                <strong>Database:</strong> MongoDB, Mongoose ODM
+            </div>
+            <div class="skill-category">
+                <strong>Tools & Technologies:</strong> Git, PDF Parsing, OCR Integration, Postman, VS Code, npm
+            </div>
+            <div class="skill-category">
+                <strong>Concepts:</strong> Component-Based Architecture, State Management, API Integration, File Upload Handling, Error Handling
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Experience</div>
+        
+        <div class="experience">
+            <div class="experience-header">
+                <div>
+                    <span class="experience-title">Frontend Developer Intern</span> | <span class="experience-company">Shank Jewels</span>
+                </div>
+                <span class="experience-date">[Start Date] - [End Date]</span>
+            </div>
+            <ul class="bullet-points">
+                <li>[PASTE YOUR EXISTING SHANK JEWELS INTERNSHIP BULLET POINTS HERE]</li>
+                <li>[Your first bullet point]</li>
+                <li>[Your second bullet point]</li>
+                <li>[Your third bullet point]</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Projects</div>
+        
+        <div class="project">
+            <div class="project-header">
+                <span class="project-name">Smart Resume Analyzer (TalentScan)</span>
+                <span class="project-type">Personal Project</span>
+            </div>
+            <div class="project-mentorship">Developed with guidance from senior developer</div>
+            <div class="project-tech"><strong>Tech Stack:</strong> React.js, Tailwind CSS, Framer Motion, Node.js, Express.js, MongoDB, PDF Parsing, OCR</div>
+            
+            <div class="project-description">
+                An AI-powered resume analysis platform that provides ATS score, skill gap analysis, and structured resume feedback for job seekers.
+            </div>
+            
+            <ul class="bullet-points">
+                <li>Developed an AI-powered resume analysis platform that provides ATS score, skill gap analysis, and structured resume feedback for job seekers</li>
+                <li>Implemented animated resume analysis flow to simulate real-world AI scanning experience</li>
+                <li>Built ATS scoring logic based on skills, experience, and education</li>
+                <li>Added OCR fallback support for image-based resumes to improve parsing accuracy</li>
+                <li>Designed a modern, user-focused UI using React, Tailwind CSS, and Framer Motion</li>
+                <li>Worked under guidance of a senior developer to follow real-world architecture and best practices</li>
+            </ul>
+        </div>
+        
+        <div class="project">
+            <div class="project-header">
+                <span class="project-name">Portfolio Website</span>
+                <span class="project-type">Personal Project</span>
+            </div>
+            <div class="project-tech"><strong>Tech Stack:</strong> [Your existing tech stack]</div>
+            
+            <div class="project-description">
+                [PASTE YOUR EXISTING PORTFOLIO WEBSITE DESCRIPTION HERE]
+            </div>
+            
+            <ul class="bullet-points">
+                <li>[PASTE YOUR EXISTING PORTFOLIO WEBSITE BULLET POINTS HERE]</li>
+                <li>[Your first bullet point]</li>
+                <li>[Your second bullet point]</li>
+                <li>[Add all your existing Portfolio Website details]</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Education</div>
+        <div class="education">
+            <div class="education-degree">[Your Degree]</div>
+            <div class="education-school">[University Name]</div>
+            <div class="education-year">[Graduation Year or Expected Graduation]</div>
+            <div class="education-coursework">
+                <strong>Relevant Coursework:</strong> Data Structures, Algorithms, Database Systems, Web Development, Software Engineering
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Additional Information</div>
+        <ul class="additional-info">
+            <li>Strong problem-solving skills and attention to detail</li>
+            <li>Experience working in collaborative development environments</li>
+            <li>Continuous learner, staying updated with latest web technologies</li>
+            <li>Portfolio: [Your Portfolio URL]</li>
+            <li>GitHub: [Your GitHub URL]</li>
+        </ul>
+    </div>
+</body>
+</html>
+

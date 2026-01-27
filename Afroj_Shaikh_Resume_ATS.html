@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Afroj Shaikh - Resume</title>
+    <style>
+        @page {
+            margin: 12mm;
+            size: A4;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Calibri', 'Arial', sans-serif;
+            font-size: 11.5px;
+            line-height: 1.3;
+            color: #000;
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 15px;
+            background: white;
+        }
+        
+        a {
+            color: #000;
+            text-decoration: none;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 8px;
+        }
+        
+        .header h1 {
+            font-size: 22px;
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .header .title {
+            font-size: 13px;
+            color: #000;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+        
+        .header .contact {
+            font-size: 10px;
+            color: #000;
+            line-height: 1.5;
+        }
+        
+        .section {
+            margin-bottom: 10px;
+        }
+        
+        .section-title {
+            font-size: 14px;
+            font-weight: bold;
+            color: #000;
+            text-transform: uppercase;
+            border-bottom: 1px solid #000;
+            padding-bottom: 2px;
+            margin-top: 10px;
+            margin-bottom: 6px;
+            letter-spacing: 0.3px;
+        }
+        
+        .summary {
+            text-align: left;
+            line-height: 1.4;
+        }
+        
+        .skills {
+            display: block;
+        }
+        
+        .skill-category {
+            margin-bottom: 4px;
+        }
+        
+        .skill-category strong {
+            color: #000;
+            font-weight: bold;
+        }
+        
+        .experience {
+            margin-bottom: 10px;
+        }
+        
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 4px;
+        }
+        
+        .experience-title {
+            font-weight: bold;
+            font-size: 11px;
+            color: #000;
+        }
+        
+        .experience-company {
+            font-weight: 600;
+            color: #000;
+        }
+        
+        .experience-date {
+            font-style: italic;
+            font-size: 9.5px;
+            color: #000;
+        }
+        
+        .experience-description {
+            margin-bottom: 4px;
+            font-style: italic;
+            color: #000;
+            font-size: 10.5px;
+        }
+        
+        .project {
+            margin-bottom: 10px;
+        }
+        
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 3px;
+        }
+        
+        .project-name {
+            font-weight: bold;
+            font-size: 11px;
+            color: #000;
+        }
+        
+        .project-type {
+            font-style: italic;
+            font-size: 9.5px;
+            color: #000;
+        }
+        
+        .project-mentorship {
+            font-size: 9px;
+            color: #000;
+            font-style: italic;
+            margin-bottom: 3px;
+        }
+        
+        .project-tech {
+            font-size: 9.5px;
+            color: #000;
+            margin-bottom: 4px;
+        }
+        
+        .project-description {
+            margin-bottom: 4px;
+            line-height: 1.3;
+            font-style: italic;
+            color: #000;
+            font-size: 10px;
+        }
+        
+        .bullet-points {
+            margin-left: 18px;
+            margin-top: 2px;
+            margin-bottom: 4px;
+            padding-left: 0;
+        }
+        
+        .bullet-points li {
+            margin-bottom: 3px;
+            line-height: 1.3;
+        }
+        
+        .education {
+            margin-bottom: 6px;
+        }
+        
+        .education-degree {
+            font-weight: bold;
+            color: #000;
+            font-size: 11px;
+        }
+        
+        .education-school {
+            color: #000;
+            font-weight: 600;
+        }
+        
+        .education-year {
+            font-style: italic;
+            font-size: 9.5px;
+            color: #000;
+        }
+        
+        .education-coursework {
+            margin-top: 3px;
+            font-size: 9.5px;
+            color: #000;
+        }
+        
+        .certifications {
+            margin-top: 4px;
+        }
+        
+        .certifications li {
+            margin-bottom: 2px;
+        }
+        
+        .additional-info {
+            margin-top: 4px;
+        }
+        
+        .additional-info li {
+            margin-bottom: 2px;
+        }
+        
+        @media print {
+            @page {
+                margin: 12mm;
+                size: A4;
+            }
+            
+            body {
+                margin: 0;
+                padding: 0;
+                font-size: 11.5px;
+                line-height: 1.3;
+            }
+            
+            .header {
+                margin-bottom: 10px;
+                padding-bottom: 6px;
+            }
+            
+            .header h1 {
+                font-size: 22px;
+                margin-bottom: 4px;
+            }
+            
+            .header .title {
+                font-size: 13px;
+                margin-bottom: 4px;
+            }
+            
+            .header .contact {
+                font-size: 10px;
+                line-height: 1.4;
+            }
+            
+            .section {
+                margin-bottom: 8px;
+                page-break-inside: avoid;
+            }
+            
+            .section-title {
+                font-size: 14px;
+                margin-top: 8px;
+                margin-bottom: 4px;
+                padding-bottom: 2px;
+            }
+            
+            .experience,
+            .project,
+            .education {
+                page-break-inside: avoid;
+            }
+            
+            .bullet-points {
+                margin: 4px 0 6px 18px;
+                padding-left: 0;
+            }
+            
+            .bullet-points li {
+                margin-bottom: 3px;
+                line-height: 1.3;
+            }
+            
+            .summary {
+                line-height: 1.4;
+            }
+            
+            .skill-category {
+                margin-bottom: 3px;
+            }
+            
+            .experience-description,
+            .project-description {
+                margin-bottom: 3px;
+            }
+            
+            a {
+                color: #000;
+                text-decoration: none;
+            }
+            
+            .certifications li,
+            .additional-info li {
+                margin-bottom: 2px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>AFROJ SHAIKH</h1>
+        <div class="title">Frontend / Full Stack Developer</div>
+        <div class="contact">
+            Pune, Maharashtra, India | afrojshaikhhots@gmail.com | +91 9370562223<br>
+            LinkedIn: <a href="https://linkedin.com/in/afroj-shaikh">linkedin.com/in/afroj-shaikh</a> | GitHub: <a href="https://github.com/afroj1431">github.com/afroj1431</a>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Professional Summary</div>
+        <div class="summary">
+            Frontend-focused Software Developer with hands-on experience working on a live production e-commerce platform. Strong skills in React.js, JavaScript, and responsive UI development. Experienced in building user-centric features and developing an AI-powered resume analysis platform as a personal project under senior developer guidance.
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Technical Skills</div>
+        <div class="skills">
+            <div class="skill-category">
+                <strong>Frontend:</strong> HTML, CSS, JavaScript (ES6+), React.js, Next.js, Tailwind CSS, Framer Motion, Responsive Design
+            </div>
+            <div class="skill-category">
+                <strong>Backend & APIs:</strong> Node.js, Express.js, REST APIs
+            </div>
+            <div class="skill-category">
+                <strong>Database:</strong> MongoDB
+            </div>
+            <div class="skill-category">
+                <strong>Tools:</strong> Git, GitHub, Postman, VS Code, PDF Parsing, OCR
+            </div>
+            <div class="skill-category">
+                <strong>Concepts:</strong> Component-Based Architecture, UI Optimization, API Integration, Mobile Responsiveness
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Professional Experience</div>
+        
+        <div class="experience">
+            <div class="experience-header">
+                <div>
+                    <span class="experience-title">Software Developer Intern</span> | <span class="experience-company">Shank Jewels (E-Commerce Platform)</span>
+                </div>
+                <span class="experience-date">Pune | October 2025 – Present</span>
+            </div>
+            <div class="experience-description">
+                Developed and optimized frontend features for a live jewelry e-commerce platform used by real customers.
+            </div>
+            <ul class="bullet-points">
+                <li>Implemented wishlist functionality, improving user engagement and product interaction</li>
+                <li>Customized homepage sliders and UI sections to enhance visual appeal and usability</li>
+                <li>Integrated a custom search feature by removing legacy search implementation</li>
+                <li>Improved mobile responsiveness across header, footer, and navigation components</li>
+                <li>Fixed UI bugs related to icons, alignment, and cross-device compatibility</li>
+                <li>Collaborated with backend APIs for product listing, cart, and checkout workflows</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Projects</div>
+        
+        <div class="project">
+            <div class="project-header">
+                <span class="project-name">Smart Resume Analyzer (TalentScan)</span>
+                <span class="project-type">Personal Project</span>
+            </div>
+            <div class="project-mentorship">Developed with Senior Guidance</div>
+            <div class="project-tech"><strong>Tech Stack:</strong> React.js, JavaScript, Tailwind CSS, Framer Motion, Node.js, Express.js, MongoDB, PDF Parsing, OCR</div>
+            
+            <ul class="bullet-points">
+                <li>Developed an AI-powered resume analysis platform that provides ATS score, skill gap analysis, and structured resume feedback for job seekers</li>
+                <li>Implemented animated resume analysis flow to simulate real-world AI scanning experience</li>
+                <li>Built ATS scoring logic based on skills, experience, and education</li>
+                <li>Added OCR fallback support for image-based resumes to improve parsing accuracy</li>
+                <li>Designed a modern, user-focused UI using React, Tailwind CSS, and Framer Motion</li>
+                <li>Worked under guidance of a senior developer to follow real-world architecture and best practices</li>
+            </ul>
+        </div>
+        
+        <div class="project">
+            <div class="project-header">
+                <span class="project-name">Portfolio Website</span>
+                <span class="project-type">Personal Project</span>
+            </div>
+            <div class="project-tech"><strong>Tech Stack:</strong> HTML, CSS, JavaScript</div>
+            
+            <ul class="bullet-points">
+                <li>Designed and developed a responsive personal portfolio to showcase projects and skills</li>
+                <li>Implemented smooth scrolling, section navigation, and clean UI design</li>
+                <li>Deployed using GitHub Pages</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Education</div>
+        <div class="education">
+            <div class="education-degree">B.Sc. in Computer Science</div>
+            <div class="education-school">Savitri Bai Phule Pune University (SPPU)</div>
+            <div class="education-year">Year of Completion: 2023</div>
+            <div class="education-coursework">
+                <strong>Relevant Coursework:</strong> Data Structures, Database Management Systems, Operating Systems, PHP
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Certifications</div>
+        <ul class="certifications">
+            <li>Full Stack Java Developer</li>
+            <li>C, C++, MS-CIT</li>
+            <li>Excel</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Additional Information</div>
+        <ul class="additional-info">
+            <li><strong>Languages:</strong> English, Hindi, Marathi</li>
+        </ul>
+    </div>
+</body>
+</html>
+

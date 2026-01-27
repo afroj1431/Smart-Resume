@@ -1,0 +1,61 @@
+[YOUR FULL NAME]
+Frontend / Full Stack Developer
+
+[Your Email] | [Your Phone] | [Your LinkedIn] | [Your GitHub/Portfolio]
+
+================================================================================
+PROFESSIONAL SUMMARY
+================================================================================
+
+Results-driven Frontend and Full Stack Developer with experience building modern web applications using React, Node.js, and MongoDB. Passionate about creating user-centric interfaces with clean code architecture. Developed AI-powered resume analysis platform under senior developer mentorship, demonstrating ability to learn quickly and implement complex features. Strong foundation in responsive design, RESTful APIs, and database management. Seeking opportunities to contribute to innovative projects while continuing to grow technical expertise.
+
+================================================================================
+TECHNICAL SKILLS
+================================================================================
+
+Frontend: React.js, JavaScript (ES6+), HTML5, CSS3, Tailwind CSS, Framer Motion, Responsive Design
+Backend: Node.js, Express.js, RESTful APIs, JWT Authentication
+Database: MongoDB, Mongoose ODM
+Tools & Technologies: Git, PDF Parsing, OCR Integration, Postman, VS Code, npm
+Concepts: Component-Based Architecture, State Management, API Integration, File Upload Handling, Error Handling
+
+================================================================================
+PROJECTS
+================================================================================
+
+Smart Resume Analyzer (TalentScan) | Personal Project
+Developed with mentorship from senior developer
+Tech Stack: React.js, Node.js, Express.js, MongoDB, Tailwind CSS, Framer Motion
+
+An AI-powered resume analysis platform that helps job seekers improve their resumes through automated ATS scoring, skill gap analysis, and personalized feedback.
+
+• Developed modern, animated SaaS frontend using React, Tailwind CSS, and Framer Motion with glassmorphism design and smooth user interactions
+• Implemented complete resume upload and analysis workflow, enabling users to receive instant ATS compatibility scores
+• Integrated ATS score calculation algorithm based on skills matching (60%), experience relevance (25%), and education (15%)
+• Built structured resume feedback system including strengths identification, weakness detection, and actionable improvement suggestions
+• Added OCR fallback functionality for image-based resumes to improve parsing accuracy and user experience
+• Designed clean, user-focused UI with animated analysis flow, progress indicators, and real-time score visualization
+• Collaborated with senior developer to improve code architecture, implement best practices, and enhance application performance
+• Utilized MongoDB for data persistence, implemented JWT-based authentication, and created RESTful APIs for seamless frontend-backend communication
+
+Key Features: Resume parsing, ATS scoring, skill analysis, structured feedback, improvement suggestions, resume history tracking
+
+================================================================================
+EDUCATION
+================================================================================
+
+[Your Degree] | [University Name]
+[Graduation Year or Expected Graduation]
+
+Relevant Coursework: Data Structures, Algorithms, Database Systems, Web Development, Software Engineering
+
+================================================================================
+ADDITIONAL INFORMATION
+================================================================================
+
+• Strong problem-solving skills and attention to detail
+• Experience working in collaborative development environments
+• Continuous learner, staying updated with latest web technologies
+• Portfolio: [Your Portfolio URL]
+• GitHub: [Your GitHub URL]
+
