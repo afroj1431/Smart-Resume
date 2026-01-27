@@ -9,8 +9,10 @@ import {
   Tooltip,
   Legend
 } from 'chart.js';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
+ChartJS.register(ChartDataLabels);
 
 const ANALYSIS_STEPS = [
   { id: 1, label: 'Parsing resume', icon: '📄' },
@@ -45,7 +47,52 @@ const ResumeAnalyzer = () => {
         
         if (!mounted) return;
         
-        setResume(resumeRes.data.data.resume);
+        const resumeData = resumeRes.data.data.resume;
+        setResume(resumeData);
+        
+        // Debug logging
+        console.log('Resume data received:', {
+          resumeId: resumeData._id,
+          hasJobDescription: !!resumeData.jobDescription,
+          jobDescriptionType: typeof resumeData.jobDescription,
+          jobDescriptionLength: resumeData.jobDescription?.length || 0,
+          jobDescriptionPreview: resumeData.jobDescription?.substring(0, 50) || 'NULL',
+          allResumeKeys: Object.keys(resumeData)
+        });
+        
+        // Validate job description with minimum length threshold
+        const MIN_JOB_DESCRIPTION_LENGTH = 30;
+        const jobDesc = resumeData.jobDescription;
+        const jobDescTrimmed = typeof jobDesc === 'string' ? jobDesc.trim() : '';
+        
+        console.log('Validating job description:', {
+          exists: !!jobDesc,
+          type: typeof jobDesc,
+          length: jobDesc?.length || 0,
+          trimmedLength: jobDescTrimmed.length,
+          minRequired: MIN_JOB_DESCRIPTION_LENGTH,
+          isValid: jobDescTrimmed.length >= MIN_JOB_DESCRIPTION_LENGTH
+        });
+        
+        if (!jobDesc || jobDescTrimmed.length < MIN_JOB_DESCRIPTION_LENGTH) {
+          console.warn('Job description validation failed:', {
+            value: jobDesc,
+            type: typeof jobDesc,
+            length: jobDesc?.length || 0,
+            trimmedLength: jobDescTrimmed.length,
+            minRequired: MIN_JOB_DESCRIPTION_LENGTH
+          });
+          if (mounted) {
+            setLoading(false);
+            setAnalyzing(false);
+          }
+          return; // Will show error message in UI
+        }
+        
+        console.log('✅ Job description validated successfully:', {
+          length: jobDescTrimmed.length,
+          preview: jobDescTrimmed.substring(0, 50)
+        });
         
         if (scoreRes) {
           setScore(scoreRes.data.data.score);
@@ -57,6 +104,10 @@ const ResumeAnalyzer = () => {
             }
           } catch (error) {
             console.error('Failed to calculate score:', error);
+            if (mounted) {
+              setLoading(false);
+              setAnalyzing(false);
+            }
           }
         }
 
@@ -245,7 +296,18 @@ const ResumeAnalyzer = () => {
   // Analysis Screen
   if (analyzing || loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-pink-900 flex items-center justify-center p-6">
+      <div className="min-h-screen flex items-center justify-center p-6" style={{
+        background: 'linear-gradient(135deg, #0F172A 0%, #1E293B 20%, #312E81 40%, #1E3A8A 60%, #2563EB 80%, #1E40AF 100%)',
+        backgroundSize: '400% 400%',
+        animation: 'gradient 15s ease infinite'
+      }}>
+        <style>{`
+          @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+          }
+        `}</style>
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -255,7 +317,7 @@ const ResumeAnalyzer = () => {
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-              className="w-20 h-20 border-4 border-white/30 border-t-white rounded-full mx-auto mb-6"
+              className="w-20 h-20 border-4 border-indigo-500/30 border-t-indigo-400 rounded-full mx-auto mb-6"
             />
             <h2 className="text-3xl font-bold text-white mb-2">AI Analyzing Your Resume</h2>
             <p className="text-white/80">Please wait while we scan your document...</p>
@@ -272,7 +334,7 @@ const ResumeAnalyzer = () => {
                 initial={{ width: 0 }}
                 animate={{ width: `${progress}%` }}
                 transition={{ duration: 0.3 }}
-                className="h-full bg-gradient-to-r from-purple-400 to-pink-400 rounded-full"
+                className="h-full bg-gradient-to-r from-indigo-500 to-primary-600 rounded-full"
               />
             </div>
           </div>
@@ -312,7 +374,7 @@ const ResumeAnalyzer = () => {
                       initial={{ width: 0 }}
                       animate={{ width: '100%' }}
                       transition={{ duration: 0.8 }}
-                      className="h-1 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full mt-2"
+                      className="h-1 bg-gradient-to-r from-indigo-500 to-primary-600 rounded-full mt-2"
                     />
                   )}
                 </div>
@@ -320,7 +382,7 @@ const ResumeAnalyzer = () => {
                   <motion.div
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
-                    className="text-green-400 text-xl"
+                    className="text-indigo-400 text-xl"
                   >
                     ✓
                   </motion.div>
@@ -338,21 +400,32 @@ const ResumeAnalyzer = () => {
     datasets: [{
       data: [score.skillScore, score.experienceScore, score.educationScore],
       backgroundColor: [
-        'rgba(139, 92, 246, 0.8)',
-        'rgba(59, 130, 246, 0.8)',
-        'rgba(236, 72, 153, 0.8)'
+        'rgba(255, 255, 255, 0.9)',      // White for Skills
+        'rgba(34, 197, 94, 0.9)',        // Green for Experience
+        'rgba(56, 189, 248, 0.9)'        // Sky Blue for Education
       ],
       borderColor: [
-        'rgba(139, 92, 246, 1)',
-        'rgba(59, 130, 246, 1)',
-        'rgba(236, 72, 153, 1)'
+        'rgba(255, 255, 255, 1)',        // White border
+        'rgba(34, 197, 94, 1)',          // Green border
+        'rgba(56, 189, 248, 1)'          // Sky Blue border
       ],
       borderWidth: 2
     }]
   } : null;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-pink-900 py-12">
+    <div className="min-h-screen py-12" style={{
+      background: 'linear-gradient(135deg, #0F172A 0%, #1E293B 20%, #312E81 40%, #1E3A8A 60%, #2563EB 80%, #1E40AF 100%)',
+      backgroundSize: '400% 400%',
+      animation: 'gradient 15s ease infinite'
+    }}>
+      <style>{`
+        @keyframes gradient {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+      `}</style>
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <motion.div
@@ -361,10 +434,63 @@ const ResumeAnalyzer = () => {
           className="text-center mb-12"
         >
           <h1 className="text-5xl font-bold text-white mb-4">AI Resume Analysis</h1>
-          <p className="text-xl text-white/80">Comprehensive insights powered by AI</p>
+          <p className="text-xl text-white/80">Job-Specific ATS Compatibility Analysis</p>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="mt-4 inline-block px-4 py-2 bg-indigo-500/30 border border-indigo-400/50 rounded-lg"
+          >
+            <span className="text-indigo-300 text-sm">🎯 Analyzing resume against job description</span>
+          </motion.div>
         </motion.div>
 
-        {score && resume && insights && (
+        {/* Error: No Job Description - Only show if jobDescription is missing or too short */}
+        {resume && (() => {
+          const MIN_LENGTH = 30;
+          const jobDesc = resume.jobDescription;
+          const jobDescTrimmed = typeof jobDesc === 'string' ? jobDesc.trim() : '';
+          const isValid = jobDesc && jobDescTrimmed.length >= MIN_LENGTH;
+          
+          console.log('Checking job description for error display:', {
+            exists: !!jobDesc,
+            length: jobDescTrimmed.length,
+            minRequired: MIN_LENGTH,
+            isValid: isValid,
+            shouldShowError: !isValid
+          });
+          
+          return !isValid;
+        })() && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="bg-red-500/20 backdrop-blur-xl rounded-3xl p-8 border border-red-500/50 shadow-2xl text-center"
+          >
+            <div className="text-6xl mb-4">⚠️</div>
+            <h2 className="text-3xl font-bold text-white mb-4">Job Description Required</h2>
+            <p className="text-white/80 text-lg mb-6">
+              ATS analysis requires a job description to evaluate resume compatibility.
+            </p>
+            <p className="text-white/60 mb-6">
+              Please upload your resume again with a job description to get ATS compatibility analysis.
+            </p>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => window.location.href = '/upload'}
+              className="px-6 py-3 bg-gradient-to-r from-indigo-600 to-primary-600 text-white rounded-xl hover:from-indigo-700 hover:to-primary-700 transition-all font-semibold shadow-lg"
+            >
+              Upload Resume with Job Description
+            </motion.button>
+          </motion.div>
+        )}
+
+        {score && resume && (() => {
+          const MIN_LENGTH = 30;
+          const jobDesc = resume.jobDescription;
+          const jobDescTrimmed = typeof jobDesc === 'string' ? jobDesc.trim() : '';
+          return jobDesc && jobDescTrimmed.length >= MIN_LENGTH;
+        })() && insights && (
           <>
             {/* ATS Score Card */}
             <motion.div
@@ -382,10 +508,10 @@ const ResumeAnalyzer = () => {
                       transition={{ duration: 0.8, delay: 0.3 }}
                       className={`w-48 h-48 rounded-full flex items-center justify-center shadow-2xl ${
                         score.finalScore >= 80
-                          ? 'bg-gradient-to-br from-green-400 to-emerald-400'
+                          ? 'bg-gradient-to-br from-indigo-500 to-primary-600'
                           : score.finalScore >= 60
-                          ? 'bg-gradient-to-br from-blue-400 to-cyan-400'
-                          : 'bg-gradient-to-br from-yellow-400 to-orange-400'
+                          ? 'bg-gradient-to-br from-indigo-600 to-primary-500'
+                          : 'bg-gradient-to-br from-indigo-700 to-navy-700'
                       }`}
                     >
                       <div className="text-center">
@@ -406,18 +532,91 @@ const ResumeAnalyzer = () => {
                   <h3 className="text-xl font-semibold text-white mb-4">Score Breakdown</h3>
                   {scoreData && (
                     <div className="h-64">
-                      <Doughnut data={scoreData} options={{
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                          legend: { position: 'bottom', labels: { color: 'white' } }
-                        }
-                      }} />
+                      <Doughnut 
+                        data={scoreData} 
+                        plugins={[ChartDataLabels]}
+                        options={{
+                          responsive: true,
+                          maintainAspectRatio: false,
+                          plugins: {
+                            legend: { 
+                              position: 'bottom', 
+                              labels: { 
+                                color: 'white',
+                                padding: 15,
+                                font: { size: 12 }
+                              } 
+                            },
+                            tooltip: {
+                              callbacks: {
+                                label: function(context) {
+                                  const label = context.label || '';
+                                  const value = context.parsed || 0;
+                                  const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                  const percentage = total > 0 ? Math.round((value / total) * 100) : 0;
+                                  return `${label}: ${value} (${percentage}%)`;
+                                }
+                              }
+                            },
+                            datalabels: {
+                              color: 'white',
+                              font: {
+                                size: 14,
+                                weight: 'bold'
+                              },
+                              formatter: (value, context) => {
+                                const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                const percentage = total > 0 ? Math.round((value / total) * 100) : 0;
+                                return `${value}\n(${percentage}%)`;
+                              },
+                              textAlign: 'center',
+                              textStrokeColor: 'rgba(0, 0, 0, 0.5)',
+                              textStrokeWidth: 2
+                            }
+                          }
+                        }} 
+                      />
                     </div>
                   )}
                 </div>
               </div>
             </motion.div>
+
+            {/* Job Description Info */}
+            {resume?.jobDescription && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="bg-indigo-500/20 backdrop-blur-xl rounded-3xl p-6 border border-indigo-400/30 shadow-2xl mb-8"
+              >
+                <div className="flex items-start space-x-4">
+                  <div className="text-3xl">📋</div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-bold text-white mb-2">Job Description Analyzed</h3>
+                    <p className="text-white/70 text-sm mb-3">
+                      Your resume is being compared against the job requirements you provided.
+                    </p>
+                    {score?.missingSkills && score.missingSkills.length > 0 && (
+                      <div className="mt-4">
+                        <p className="text-white/80 text-sm font-semibold mb-2">Missing Skills:</p>
+                        <div className="flex flex-wrap gap-2">
+                          {score.missingSkills.slice(0, 10).map((skill, i) => (
+                            <span key={i} className="px-3 py-1 bg-red-500/20 border border-red-500/30 rounded-lg text-red-300 text-xs">
+                              {skill}
+                            </span>
+                          ))}
+                          {score.missingSkills.length > 10 && (
+                            <span className="px-3 py-1 bg-white/10 border border-white/20 rounded-lg text-white/60 text-xs">
+                              +{score.missingSkills.length - 10} more
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </motion.div>
+            )}
 
             {/* Strengths & Issues */}
             <div className="grid md:grid-cols-2 gap-8 mb-8">
@@ -437,9 +636,9 @@ const ResumeAnalyzer = () => {
                       initial={{ opacity: 0, x: -10 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: i * 0.1 }}
-                      className="flex items-start space-x-3 p-3 bg-green-500/20 rounded-lg border border-green-500/30"
+                      className="flex items-start space-x-3 p-3 bg-indigo-500/20 rounded-lg border border-indigo-500/30"
                     >
-                      <span className="text-green-400 mt-1">✓</span>
+                      <span className="text-indigo-400 mt-1">✓</span>
                       <p className="text-white">{strength}</p>
                     </motion.div>
                   ))}
@@ -488,7 +687,7 @@ const ResumeAnalyzer = () => {
                         initial={{ width: 0 }}
                         animate={{ width: `${insights.atsOptimization.keywordMatch}%` }}
                         transition={{ delay: 0.5 }}
-                        className="h-full bg-gradient-to-r from-purple-400 to-pink-400 rounded-full"
+                        className="h-full bg-gradient-to-r from-indigo-500 to-primary-600 rounded-full"
                       />
                     </div>
                     <span className="text-white font-bold">{Math.round(insights.atsOptimization.keywordMatch)}%</span>
@@ -502,7 +701,7 @@ const ResumeAnalyzer = () => {
                         initial={{ width: 0 }}
                         animate={{ width: `${insights.atsOptimization.sectionCompleteness}%` }}
                         transition={{ delay: 0.7 }}
-                        className="h-full bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full"
+                        className="h-full bg-gradient-to-r from-indigo-500 to-primary-600 rounded-full"
                       />
                     </div>
                     <span className="text-white font-bold">{insights.atsOptimization.sectionCompleteness}%</span>
@@ -516,7 +715,7 @@ const ResumeAnalyzer = () => {
                         initial={{ width: 0 }}
                         animate={{ width: `${insights.atsOptimization.formattingScore}%` }}
                         transition={{ delay: 0.9 }}
-                        className="h-full bg-gradient-to-r from-green-400 to-emerald-400 rounded-full"
+                        className="h-full bg-gradient-to-r from-indigo-500 to-primary-600 rounded-full"
                       />
                     </div>
                     <span className="text-white font-bold">{insights.atsOptimization.formattingScore}%</span>
@@ -593,7 +792,7 @@ const ResumeAnalyzer = () => {
                     <ul className="space-y-2">
                       {category.items.map((item, j) => (
                         <li key={j} className="flex items-start space-x-2 text-white/80">
-                          <span className="text-purple-400 mt-1">•</span>
+                          <span className="text-indigo-400 mt-1">•</span>
                           <span className="text-sm">{item}</span>
                         </li>
                       ))}
@@ -618,7 +817,7 @@ const ResumeAnalyzer = () => {
                       initial={{ opacity: 0, scale: 0 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ delay: i * 0.05 }}
-                      className="px-4 py-2 bg-gradient-to-r from-purple-500/30 to-pink-500/30 rounded-lg text-white text-sm border border-white/20"
+                      className="px-4 py-2 bg-gradient-to-r from-indigo-500/30 to-primary-500/30 rounded-lg text-white text-sm border border-white/20"
                     >
                       {skill}
                     </motion.span>

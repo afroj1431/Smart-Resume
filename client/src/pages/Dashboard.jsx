@@ -47,7 +47,7 @@ const Dashboard = () => {
     if (score >= 80) return 'from-green-500 to-emerald-500';
     if (score >= 60) return 'from-blue-500 to-cyan-500';
     if (score >= 40) return 'from-yellow-500 to-orange-500';
-    return 'from-red-500 to-pink-500';
+    return 'from-red-500 to-orange-500';
   };
 
   if (loading) {
@@ -96,7 +96,7 @@ const Dashboard = () => {
           </div>
           <Link
             to="/upload"
-            className="px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-xl hover:from-purple-700 hover:to-pink-700 transition-all font-semibold shadow-2xl hover:shadow-purple-500/50 transform hover:scale-105"
+            className="px-6 py-3 bg-gradient-to-r from-indigo-600 to-primary-600 text-white rounded-xl hover:from-indigo-700 hover:to-primary-700 transition-all font-semibold shadow-2xl hover:shadow-indigo-500/50 transform hover:scale-105"
           >
             Upload New Resume
           </Link>
@@ -143,7 +143,7 @@ const Dashboard = () => {
               icon="📊"
               link="/ats-scores"
               linkText="View all scores"
-              iconBg="bg-gradient-to-br from-purple-500 to-pink-500"
+              iconBg="bg-gradient-to-br from-indigo-500 to-primary-600"
             />
           </motion.div>
         </div>
@@ -188,7 +188,7 @@ const Dashboard = () => {
             <div className="mt-6">
               <Link
                 to={`/analyzer/${stats.latestScore.resumeId}`}
-                className="inline-block px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-xl hover:from-purple-700 hover:to-pink-700 transition-all font-semibold shadow-lg hover:shadow-purple-500/50 transform hover:scale-105"
+                className="inline-block px-6 py-3 bg-gradient-to-r from-indigo-600 to-primary-600 text-white rounded-xl hover:from-indigo-700 hover:to-primary-700 transition-all font-semibold shadow-lg hover:shadow-indigo-500/50 transform hover:scale-105"
               >
                 View Full Analysis →
               </Link>
@@ -238,7 +238,7 @@ const Dashboard = () => {
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex-1">
-                        <h3 className="font-semibold text-white group-hover:text-purple-300 transition-colors">
+                        <h3 className="font-semibold text-white group-hover:text-indigo-300 transition-colors">
                           {resume.candidateName || resume.fileName}
                         </h3>
                         <p className="text-sm text-white/60 mt-1">
@@ -257,7 +257,7 @@ const Dashboard = () => {
                             {resume.score.finalScore}%
                           </div>
                         )}
-                        <svg className="w-5 h-5 text-white/40 group-hover:text-purple-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-5 h-5 text-white/40 group-hover:text-indigo-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                         </svg>
                       </div>
@@ -283,7 +283,7 @@ const Dashboard = () => {
             <div className="flex items-center space-x-4">
               <div className="text-5xl">🔍</div>
               <div>
-                <h3 className="text-xl font-bold text-white group-hover:text-cyan-300 transition-colors">
+                <h3 className="text-xl font-bold text-white group-hover:text-primary-300 transition-colors">
                   Find Job Matches
                 </h3>
                 <p className="text-white/70 mt-1">Discover jobs that match your resume</p>
@@ -297,7 +297,7 @@ const Dashboard = () => {
             <div className="flex items-center space-x-4">
               <div className="text-5xl">💡</div>
               <div>
-                <h3 className="text-xl font-bold text-white group-hover:text-pink-300 transition-colors">
+                <h3 className="text-xl font-bold text-white group-hover:text-indigo-300 transition-colors">
                   Get Resume Tips
                 </h3>
                 <p className="text-white/70 mt-1">Learn how to improve your resume</p>

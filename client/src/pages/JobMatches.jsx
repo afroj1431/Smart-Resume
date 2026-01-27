@@ -52,7 +52,7 @@ const JobMatches = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-pink-900 py-12">
+    <div className="min-h-screen bg-gradient-to-br from-navy-900 via-indigo-900 via-primary-900 to-navy-800 py-12">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -92,14 +92,14 @@ const JobMatches = () => {
                 <p className="text-white/60 text-xs mb-2">Required Skills:</p>
                 <div className="flex flex-wrap gap-2">
                   {job.skills.map((skill, i) => (
-                    <span key={i} className="px-2 py-1 bg-purple-500/30 rounded text-white text-xs">
+                    <span key={i} className="px-2 py-1 bg-indigo-500/30 rounded text-white text-xs">
                       {skill}
                     </span>
                   ))}
                 </div>
               </div>
               
-              <button className="w-full px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all font-semibold">
+              <button className="w-full px-4 py-2 bg-gradient-to-r from-indigo-600 to-primary-600 text-white rounded-lg hover:from-indigo-700 hover:to-primary-700 transition-all font-semibold">
                 Apply Now
               </button>
             </motion.div>
@@ -115,7 +115,7 @@ const JobMatches = () => {
             <p className="text-white/60 text-lg mb-6">No job matches yet</p>
             <Link
               to="/upload"
-              className="inline-block px-6 py-3 bg-white text-purple-600 rounded-lg hover:bg-white/90 transition-all font-semibold"
+              className="inline-block px-6 py-3 bg-white text-indigo-600 rounded-lg hover:bg-white/90 transition-all font-semibold"
             >
               Upload Your Resume
             </Link>

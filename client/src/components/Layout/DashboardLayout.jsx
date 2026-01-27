@@ -5,7 +5,7 @@ import Navbar from './Navbar';
 const DashboardLayout = ({ children }) => {
   return (
     <div className="flex min-h-screen" style={{ 
-      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%)',
+      background: 'linear-gradient(135deg, #0F172A 0%, #1E293B 20%, #312E81 40%, #1E3A8A 60%, #2563EB 80%, #1E40AF 100%)',
       backgroundSize: '400% 400%',
       animation: 'gradient 15s ease infinite'
     }}>

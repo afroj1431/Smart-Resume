@@ -3,10 +3,8 @@ import axios from 'axios';
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
 const api = axios.create({
-  baseURL: API_URL,
-  headers: {
-    'Content-Type': 'application/json'
-  }
+  baseURL: API_URL
+  // Don't set default Content-Type - let axios set it based on data type
 });
 
 // Add token to requests
@@ -16,6 +14,11 @@ api.interceptors.request.use(
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
+    // Set Content-Type only for JSON requests (not FormData)
+    if (!(config.data instanceof FormData)) {
+      config.headers['Content-Type'] = 'application/json';
+    }
+    // For FormData, let browser set Content-Type with boundary automatically
     return config;
   },
   (error) => {
@@ -53,9 +56,11 @@ export const jobsAPI = {
 
 // Resumes API
 export const resumesAPI = {
-  upload: (formData) => api.post('/resumes/upload', formData, {
-    headers: { 'Content-Type': 'multipart/form-data' }
-  }),
+  upload: (formData) => {
+    // Don't set Content-Type manually - interceptor will handle it
+    // Browser will automatically set 'multipart/form-data' with boundary
+    return api.post('/resumes/upload', formData);
+  },
   getMyResumes: () => api.get('/resumes/my-resumes'),
   getByJob: (jobId) => api.get(`/resumes/job/${jobId}`),
   getById: (id) => api.get(`/resumes/${id}`),

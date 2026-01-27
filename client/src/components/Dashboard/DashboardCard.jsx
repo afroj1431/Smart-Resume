@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
-const DashboardCard = ({ title, value, icon, link, linkText, iconBg = 'bg-gradient-to-br from-purple-500 to-pink-500' }) => {
+const DashboardCard = ({ title, value, icon, link, linkText, iconBg = 'bg-gradient-to-br from-indigo-500 to-primary-600' }) => {
   return (
     <motion.div
       whileHover={{ y: -5, scale: 1.02 }}

@@ -23,7 +23,7 @@ const Sidebar = () => {
         animate={{ opacity: 1, x: 0 }}
         className="mb-8"
       >
-        <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+        <h1 className="text-2xl font-bold bg-gradient-to-r from-indigo-400 to-primary-500 bg-clip-text text-transparent">
           TalentScan AI
         </h1>
         <p className="text-sm text-white/60 mt-1">Your Career Assistant</p>
@@ -55,7 +55,7 @@ const Sidebar = () => {
                 to={item.path}
                 className={`flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 ${
                   isActive
-                    ? 'bg-gradient-to-r from-purple-500/30 to-pink-500/30 text-white font-semibold shadow-lg border border-white/30'
+                    ? 'bg-gradient-to-r from-indigo-500/30 to-primary-500/30 text-white font-semibold shadow-lg border border-white/30'
                     : 'text-white/70 hover:bg-white/10 hover:text-white hover:border border-white/10'
                 }`}
               >
@@ -75,7 +75,7 @@ const Sidebar = () => {
       >
         <Link
           to="/upload"
-          className="flex items-center justify-center space-x-2 px-4 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-xl hover:from-purple-700 hover:to-pink-700 transition-all font-semibold shadow-2xl hover:shadow-purple-500/50 transform hover:scale-105"
+          className="flex items-center justify-center space-x-2 px-4 py-3 bg-gradient-to-r from-indigo-600 to-primary-600 text-white rounded-xl hover:from-indigo-700 hover:to-primary-700 transition-all font-semibold shadow-2xl hover:shadow-indigo-500/50 transform hover:scale-105"
         >
           <span>➕</span>
           <span>Upload New Resume</span>

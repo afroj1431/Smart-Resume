@@ -52,7 +52,7 @@ const ATSScores = () => {
     if (score >= 80) return 'from-green-500 to-emerald-500';
     if (score >= 60) return 'from-blue-500 to-cyan-500';
     if (score >= 40) return 'from-yellow-500 to-orange-500';
-    return 'from-red-500 to-pink-500';
+    return 'from-red-500 to-orange-500';
   };
 
   const chartData = scores.length > 0 ? {
@@ -104,7 +104,7 @@ const ATSScores = () => {
           </div>
           <Link
             to="/upload"
-            className="px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-xl hover:from-purple-700 hover:to-pink-700 transition-all font-semibold shadow-2xl hover:shadow-purple-500/50 transform hover:scale-105"
+            className="px-6 py-3 bg-gradient-to-r from-indigo-600 to-primary-600 text-white rounded-xl hover:from-indigo-700 hover:to-primary-700 transition-all font-semibold shadow-2xl hover:shadow-indigo-500/50 transform hover:scale-105"
           >
             Upload New Resume
           </Link>
@@ -121,7 +121,7 @@ const ATSScores = () => {
             <p className="text-white/70 mb-6">Upload a resume to get your first ATS score</p>
             <Link
               to="/upload"
-              className="inline-block px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-xl hover:from-purple-700 hover:to-pink-700 transition-all font-semibold shadow-lg hover:shadow-purple-500/50 transform hover:scale-105"
+              className="inline-block px-6 py-3 bg-gradient-to-r from-indigo-600 to-primary-600 text-white rounded-xl hover:from-indigo-700 hover:to-primary-700 transition-all font-semibold shadow-lg hover:shadow-indigo-500/50 transform hover:scale-105"
             >
               Upload Resume
             </Link>
@@ -201,7 +201,7 @@ const ATSScores = () => {
                       </motion.div>
                       <Link
                         to={`/analyzer/${item.resume._id}`}
-                        className="text-sm text-white/80 hover:text-purple-300 font-semibold transition-colors"
+                        className="text-sm text-white/80 hover:text-indigo-300 font-semibold transition-colors"
                       >
                         View Details →
                       </Link>

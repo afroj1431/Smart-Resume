@@ -72,7 +72,7 @@ const MyResumes = () => {
           </div>
           <Link
             to="/upload"
-            className="px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-xl hover:from-purple-700 hover:to-pink-700 transition-all font-semibold shadow-2xl hover:shadow-purple-500/50 transform hover:scale-105"
+            className="px-6 py-3 bg-gradient-to-r from-indigo-600 to-primary-600 text-white rounded-xl hover:from-indigo-700 hover:to-primary-700 transition-all font-semibold shadow-2xl hover:shadow-indigo-500/50 transform hover:scale-105"
           >
             Upload New Resume
           </Link>
@@ -89,7 +89,7 @@ const MyResumes = () => {
             <p className="text-white/70 mb-6">Upload your first resume to get started with AI-powered analysis</p>
             <Link
               to="/upload"
-              className="inline-block px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-xl hover:from-purple-700 hover:to-pink-700 transition-all font-semibold shadow-lg hover:shadow-purple-500/50 transform hover:scale-105"
+              className="inline-block px-6 py-3 bg-gradient-to-r from-indigo-600 to-primary-600 text-white rounded-xl hover:from-indigo-700 hover:to-primary-700 transition-all font-semibold shadow-lg hover:shadow-indigo-500/50 transform hover:scale-105"
             >
               Upload Resume
             </Link>
@@ -118,9 +118,9 @@ const MyResumes = () => {
                     {resume.score && (
                       <div className={`px-3 py-1 rounded-full text-sm font-bold ${
                         resume.score.finalScore >= 80
-                          ? 'bg-gradient-to-r from-green-500 to-emerald-500 text-white'
+                          ? 'bg-gradient-to-r from-brand-green to-emerald-500 text-white'
                           : resume.score.finalScore >= 60
-                          ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white'
+                          ? 'bg-gradient-to-r from-brand-blue to-cyan-500 text-white'
                           : 'bg-gradient-to-r from-yellow-500 to-orange-500 text-white'
                       }`}>
                         {resume.score.finalScore}%
@@ -132,7 +132,7 @@ const MyResumes = () => {
                     <p className="text-sm text-white/70 mb-2">Skills Detected:</p>
                     <div className="flex flex-wrap gap-2">
                       {resume.extractedSkills?.slice(0, 3).map((skill, i) => (
-                        <span key={i} className="px-2 py-1 bg-purple-500/30 backdrop-blur-md text-white rounded-lg text-xs border border-white/20">
+                        <span key={i} className="px-2 py-1 bg-indigo-500/30 backdrop-blur-md text-white rounded-lg text-xs border border-white/20">
                           {skill}
                         </span>
                       ))}
@@ -147,7 +147,7 @@ const MyResumes = () => {
                   <div className="flex space-x-2">
                     <Link
                       to={`/analyzer/${resume._id}`}
-                      className="flex-1 px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-xl hover:from-purple-700 hover:to-pink-700 transition-all text-sm font-semibold text-center shadow-lg hover:shadow-purple-500/50"
+                      className="flex-1 px-4 py-2 bg-gradient-to-r from-indigo-600 to-primary-600 text-white rounded-xl hover:from-indigo-700 hover:to-primary-700 transition-all text-sm font-semibold text-center shadow-lg hover:shadow-indigo-500/50"
                     >
                       View Analysis
                     </Link>

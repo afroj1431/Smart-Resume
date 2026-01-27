@@ -10,7 +10,7 @@ const Navbar = () => {
           animate={{ opacity: 1, x: 0 }}
           className="flex items-center space-x-4"
         >
-          <h2 className="text-lg font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+          <h2 className="text-lg font-bold bg-gradient-to-r from-indigo-400 to-primary-500 bg-clip-text text-transparent">
             TalentScan AI
           </h2>
           <span className="text-sm text-white/70 hidden md:block">Your AI Career Assistant</span>
@@ -22,7 +22,7 @@ const Navbar = () => {
         >
           <Link
             to="/upload"
-            className="px-5 py-2.5 text-sm bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-xl hover:from-purple-700 hover:to-pink-700 transition-all font-semibold shadow-lg hover:shadow-purple-500/50 transform hover:scale-105"
+            className="px-5 py-2.5 text-sm bg-gradient-to-r from-indigo-600 to-primary-600 text-white rounded-xl hover:from-indigo-700 hover:to-primary-700 transition-all font-semibold shadow-lg hover:shadow-indigo-500/50 transform hover:scale-105"
           >
             Upload Resume
           </Link>

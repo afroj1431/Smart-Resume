@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 const Landing = () => {
   return (
     <div className="min-h-screen relative overflow-hidden" style={{ 
-      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%)',
+      background: 'linear-gradient(135deg, #0F172A 0%, #1E293B 20%, #312E81 40%, #1E3A8A 60%, #2563EB 80%, #1E40AF 100%)',
       backgroundSize: '400% 400%',
       animation: 'gradient 15s ease infinite'
     }}>
@@ -20,7 +20,7 @@ const Landing = () => {
       {/* Floating Blob Animations */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
-          className="absolute top-20 left-10 w-72 h-72 bg-purple-500/30 rounded-full blur-3xl"
+          className="absolute top-20 left-10 w-72 h-72 bg-indigo-600/30 rounded-full blur-3xl"
           animate={{
             x: [0, 100, 0],
             y: [0, 50, 0],
@@ -33,7 +33,7 @@ const Landing = () => {
           }}
         />
         <motion.div
-          className="absolute bottom-20 right-10 w-96 h-96 bg-pink-500/30 rounded-full blur-3xl"
+          className="absolute bottom-20 right-10 w-96 h-96 bg-navy-800/30 rounded-full blur-3xl"
           animate={{
             x: [0, -100, 0],
             y: [0, -50, 0],
@@ -46,7 +46,7 @@ const Landing = () => {
           }}
         />
         <motion.div
-          className="absolute top-1/2 left-1/2 w-80 h-80 bg-blue-500/20 rounded-full blur-3xl"
+          className="absolute top-1/2 left-1/2 w-80 h-80 bg-primary-600/20 rounded-full blur-3xl"
           animate={{
             x: [0, 150, 0],
             y: [0, -100, 0],
@@ -78,7 +78,7 @@ const Landing = () => {
           <div className="flex items-center space-x-4">
             <Link
               to="/upload"
-              className="px-6 py-2 bg-white text-purple-600 rounded-lg hover:bg-white/90 transition-all font-medium text-sm shadow-lg"
+              className="px-6 py-2 bg-white text-indigo-600 rounded-lg hover:bg-white/90 transition-all font-medium text-sm shadow-lg"
             >
               Get Started
             </Link>
@@ -110,7 +110,7 @@ const Landing = () => {
               
               <h1 className="text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
                 Know How Strong{' '}
-                <span className="bg-gradient-to-r from-yellow-200 via-pink-200 to-purple-200 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-blue-200 via-indigo-200 to-navy-200 bg-clip-text text-transparent">
                   Your Resume
                 </span>{' '}
                 Really Is
@@ -124,11 +124,11 @@ const Landing = () => {
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <Link
                   to="/upload"
-                  className="group relative px-8 py-4 bg-white text-purple-600 rounded-xl hover:bg-white/95 transition-all font-semibold text-lg shadow-2xl hover:shadow-3xl transform hover:-translate-y-1 overflow-hidden"
+                  className="group relative px-8 py-4 bg-white text-indigo-600 rounded-xl hover:bg-white/95 transition-all font-semibold text-lg shadow-2xl hover:shadow-3xl transform hover:-translate-y-1 overflow-hidden"
                 >
                   <span className="relative z-10">Upload Your Resume</span>
                   <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-purple-400 to-pink-400 opacity-0 group-hover:opacity-100 transition-opacity"
+                    className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-primary-600 opacity-0 group-hover:opacity-100 transition-opacity"
                     initial={false}
                   />
                 </Link>
@@ -165,10 +165,10 @@ const Landing = () => {
                   perspective: '1000px'
                 }}
               >
-                <div className="w-32 h-32 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full shadow-2xl shadow-purple-500/50 flex items-center justify-center border-4 border-white/30">
+                <div className="w-32 h-32 bg-gradient-to-br from-indigo-500 to-primary-600 rounded-full shadow-2xl shadow-indigo-500/50 flex items-center justify-center border-4 border-white/30">
                   <span className="text-5xl">🤖</span>
                 </div>
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full blur-xl opacity-50 animate-pulse"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500 to-primary-600 rounded-full blur-xl opacity-50 animate-pulse"></div>
               </motion.div>
 
               {/* Floating Resume Card 1 */}
@@ -207,7 +207,7 @@ const Landing = () => {
                     </div>
                     <div className="flex justify-between text-sm text-white/80">
                       <span>Education</span>
-                      <span className="text-purple-400">78%</span>
+                      <span className="text-indigo-400">78%</span>
                     </div>
                   </div>
                 </div>
@@ -238,7 +238,7 @@ const Landing = () => {
                       <div key={i} className="flex items-center space-x-2">
                         <div className="flex-1 h-2 bg-white/20 rounded-full overflow-hidden">
                           <motion.div
-                            className="h-full bg-gradient-to-r from-purple-400 to-pink-400 rounded-full"
+                            className="h-full bg-gradient-to-r from-indigo-500 to-primary-600 rounded-full"
                             initial={{ width: 0 }}
                             animate={{ width: `${75 + i * 5}%` }}
                             transition={{ duration: 1, delay: 1 + i * 0.2 }}
@@ -264,7 +264,7 @@ const Landing = () => {
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0"
               >
                 <div className="w-64 h-64 border-8 border-white/20 rounded-full flex items-center justify-center bg-white/5 backdrop-blur-md">
-                  <div className="w-48 h-48 border-8 border-purple-400/50 rounded-full flex items-center justify-center">
+                  <div className="w-48 h-48 border-8 border-indigo-500/50 rounded-full flex items-center justify-center">
                     <div className="text-center">
                       <div className="text-5xl font-bold text-white mb-2">92</div>
                       <div className="text-white/80 text-sm">ATS Score</div>
@@ -300,19 +300,19 @@ const Landing = () => {
                 title: 'ATS Score',
                 description: 'Get instant feedback on how ATS systems will parse your resume. Know your score before you apply.',
                 icon: '🎯',
-                gradient: 'from-purple-400 to-pink-400'
+                gradient: 'from-indigo-500 to-primary-600'
               },
               {
                 title: 'Skill Gap Analysis',
                 description: 'Discover missing skills for your target roles. Get personalized recommendations to improve.',
                 icon: '📊',
-                gradient: 'from-blue-400 to-cyan-400'
+                gradient: 'from-primary-500 to-indigo-600'
               },
               {
                 title: 'Job Matching',
                 description: 'Find jobs that match your resume. Get ranked recommendations based on your skills and experience.',
                 icon: '🔍',
-                gradient: 'from-green-400 to-emerald-400'
+                gradient: 'from-indigo-600 to-navy-700'
               }
             ].map((feature, index) => (
               <motion.div
@@ -380,7 +380,7 @@ const Landing = () => {
               >
                 <motion.div
                   whileHover={{ scale: 1.1, rotate: 5 }}
-                  className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full mb-6 shadow-xl"
+                  className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-indigo-500 to-primary-600 rounded-full mb-6 shadow-xl"
                 >
                   <span className="text-3xl font-bold text-white">{item.step}</span>
                 </motion.div>
@@ -408,7 +408,7 @@ const Landing = () => {
             </p>
             <Link
               to="/upload"
-              className="inline-block px-10 py-5 bg-white text-purple-600 rounded-xl hover:bg-white/95 transition-all font-semibold text-xl shadow-2xl hover:shadow-3xl transform hover:-translate-y-1"
+              className="inline-block px-10 py-5 bg-white text-indigo-600 rounded-xl hover:bg-white/95 transition-all font-semibold text-xl shadow-2xl hover:shadow-3xl transform hover:-translate-y-1"
             >
               Upload Your Resume Now
             </Link>

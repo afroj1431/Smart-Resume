@@ -45,7 +45,7 @@ const ResumeTips = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-pink-900 py-12">
+    <div className="min-h-screen bg-gradient-to-br from-navy-900 via-indigo-900 via-primary-900 to-navy-800 py-12">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -73,7 +73,7 @@ const ResumeTips = () => {
               <ul className="space-y-3">
                 {tip.items.map((item, i) => (
                   <li key={i} className="flex items-start space-x-3">
-                    <span className="text-purple-400 mt-1">✓</span>
+                    <span className="text-indigo-400 mt-1">✓</span>
                     <span className="text-white/80">{item}</span>
                   </li>
                 ))}
@@ -87,7 +87,7 @@ const ResumeTips = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
-          className="mt-12 bg-gradient-to-r from-purple-500/20 to-pink-500/20 backdrop-blur-xl rounded-2xl p-8 border border-white/20"
+          className="mt-12 bg-gradient-to-r from-indigo-500/20 to-primary-500/20 backdrop-blur-xl rounded-2xl p-8 border border-white/20"
         >
           <h2 className="text-3xl font-bold text-white mb-6">Quick Wins</h2>
           <div className="grid md:grid-cols-3 gap-6">

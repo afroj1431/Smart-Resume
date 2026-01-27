@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import DashboardLayout from '../components/Layout/DashboardLayout';
 import { getAuth } from '../utils/auth';
 import { authAPI } from '../services/api';
@@ -85,7 +86,7 @@ const Profile = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 backdrop-blur-xl rounded-2xl p-6 border border-white/20 shadow-2xl"
+          className="bg-gradient-to-r from-indigo-500/20 to-primary-500/20 backdrop-blur-xl rounded-2xl p-6 border border-white/20 shadow-2xl"
         >
           <h2 className="text-2xl font-bold text-white mb-4">About TalentScan AI</h2>
           <p className="text-white/80 leading-relaxed">
