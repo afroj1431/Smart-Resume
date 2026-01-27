@@ -154,5 +154,5 @@ export const normalizeText = (text) => {
     .trim();
 };
 
-export { skillMatches, normalizeSkill };
+export { skillMatches, normalizeSkill, skillSynonyms };
 

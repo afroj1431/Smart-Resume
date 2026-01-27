@@ -29,8 +29,42 @@ export const uploadResume = async (req, res) => {
       });
     }
 
-    // For job seekers, jobId is optional
-    const { jobId, candidateName, candidateEmail, candidatePhone } = req.body;
+    // For job seekers, jobId is optional, but jobDescription is REQUIRED for ATS analysis
+    // Multer parses multipart/form-data and puts text fields in req.body
+    const jobDescription = req.body.jobDescription;
+    const jobId = req.body.jobId;
+    const candidateName = req.body.candidateName;
+    const candidateEmail = req.body.candidateEmail;
+    const candidatePhone = req.body.candidatePhone;
+
+    // Debug logging
+    console.log('=== IN UPLOAD CONTROLLER ===');
+    console.log('req.body keys:', Object.keys(req.body));
+    console.log('jobDescription type:', typeof jobDescription);
+    try {
+      console.log('jobDescription value:', jobDescription && typeof jobDescription === 'string' ? `${jobDescription.substring(0, 100)}...` : 'MISSING');
+    } catch (e) {
+      console.log('jobDescription value: ERROR reading value');
+    }
+    console.log('jobDescription length:', jobDescription?.length || 0);
+
+    // Validate job description is provided with minimum length threshold
+    const MIN_JOB_DESCRIPTION_LENGTH = 30;
+    const trimmedJobDescription = typeof jobDescription === 'string' ? jobDescription.trim() : null;
+    
+    if (!trimmedJobDescription || trimmedJobDescription.length < MIN_JOB_DESCRIPTION_LENGTH) {
+      console.error('Job description validation failed:', {
+        exists: !!jobDescription,
+        type: typeof jobDescription,
+        length: jobDescription?.length || 0,
+        trimmedLength: trimmedJobDescription?.length || 0,
+        minRequired: MIN_JOB_DESCRIPTION_LENGTH
+      });
+      return res.status(400).json({
+        success: false,
+        message: `Job Description is required for ATS analysis. Please provide at least ${MIN_JOB_DESCRIPTION_LENGTH} characters of job description from the job posting.`
+      });
+    }
 
     // Parse PDF
     let parsedText;
@@ -63,9 +97,10 @@ export const uploadResume = async (req, res) => {
       finalCandidateName = 'My Resume';
     }
 
-    // Create resume record
-    const resume = await Resume.create({
+    // Create resume record - use the already validated and trimmed job description
+    const resumeData = {
       jobId: jobId || null,
+      jobDescription: trimmedJobDescription, // Save the validated and trimmed job description
       candidateName: finalCandidateName,
       candidateEmail: candidateEmail?.trim() || null,
       candidatePhone: candidatePhone?.trim() || null,
@@ -77,6 +112,40 @@ export const uploadResume = async (req, res) => {
       extractedExperience,
       uploadedBy: req.user._id,
       status: 'parsed'
+    };
+
+    console.log('Creating resume with jobDescription:', {
+      hasJobDescription: !!resumeData.jobDescription,
+      jobDescriptionLength: resumeData.jobDescription?.length || 0,
+      jobDescriptionPreview: resumeData.jobDescription?.substring(0, 100) || 'NULL'
+    });
+
+    const resume = await Resume.create(resumeData);
+    
+    // Verify jobDescription was saved by fetching it back immediately
+    const savedResume = await Resume.findById(resume._id).lean();
+    console.log('Resume saved - verification:', {
+      resumeId: resume._id,
+      hasJobDescription: !!savedResume?.jobDescription,
+      jobDescriptionLength: savedResume?.jobDescription?.length || 0,
+      jobDescriptionInDB: savedResume?.jobDescription ? 'YES' : 'NO',
+      jobDescriptionPreview: savedResume?.jobDescription?.substring(0, 50) || 'NULL'
+    });
+    
+    if (!savedResume?.jobDescription || savedResume.jobDescription.trim().length < MIN_JOB_DESCRIPTION_LENGTH) {
+      console.error('CRITICAL ERROR: jobDescription was not saved correctly to database!');
+      return res.status(500).json({
+        success: false,
+        message: 'Failed to save job description. Please try again.'
+      });
+    }
+
+    // Fetch the complete resume object to return (not lean)
+    const responseResume = await Resume.findById(resume._id);
+    console.log('Sending response with resume:', {
+      resumeId: responseResume._id,
+      hasJobDescription: !!responseResume.jobDescription,
+      jobDescriptionLength: responseResume.jobDescription?.length || 0
     });
 
     // Log action (optional - don't fail if logging fails)
@@ -85,7 +154,7 @@ export const uploadResume = async (req, res) => {
         action: 'resume_uploaded',
         userId: req.user._id,
         userRole: req.user?.role || 'jobseeker',
-        details: { resumeId: resume._id, candidateName: resume.candidateName }
+        details: { resumeId: responseResume._id, candidateName: responseResume.candidateName }
       });
     } catch (logError) {
       console.error('Audit log error:', logError);
@@ -94,7 +163,7 @@ export const uploadResume = async (req, res) => {
 
     res.status(201).json({
       success: true,
-      data: { resume }
+      data: { resume: responseResume }
     });
   } catch (error) {
     console.error('Upload resume error:', error);
@@ -186,6 +255,14 @@ export const getResume = async (req, res) => {
         message: 'Resume not found'
       });
     }
+    
+    // Debug logging
+    console.log('Retrieved resume:', {
+      resumeId: resume._id,
+      hasJobDescription: !!resume.jobDescription,
+      jobDescriptionLength: resume.jobDescription?.length || 0,
+      jobDescriptionPreview: resume.jobDescription?.substring(0, 50) || 'NULL'
+    });
 
     // Check access - user can access their own resumes or if they created the job
     if (resume.uploadedBy._id.toString() !== req.user._id.toString()) {

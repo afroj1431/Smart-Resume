@@ -6,6 +6,11 @@ const resumeSchema = new mongoose.Schema({
     ref: 'Job',
     required: false // Optional for job seekers
   },
+  jobDescription: {
+    type: String,
+    required: false, // Optional - user can paste job description text
+    trim: true
+  },
   candidateName: {
     type: String,
     required: false, // Optional - can be extracted from file name

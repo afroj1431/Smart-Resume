@@ -71,10 +71,11 @@ app.use((err, req, res, next) => {
 const connectDB = async () => {
   try {
     await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/talentscan');
-    console.log('MongoDB connected successfully');
+    console.log('✅ MongoDB connected successfully');
   } catch (error) {
-    console.error('MongoDB connection error:', error);
-    process.exit(1);
+    console.error('❌ MongoDB connection error:', error.message);
+    console.log('⚠️  Server will continue but database operations may fail.');
+    console.log('💡 Make sure MongoDB is running: mongod or net start MongoDB');
   }
 };
 
@@ -82,6 +83,7 @@ connectDB();
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`🚀 Server running on http://localhost:${PORT}`);
+  console.log(`📡 API Health: http://localhost:${PORT}/api/health`);
 });
 

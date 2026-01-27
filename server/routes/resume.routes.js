@@ -22,15 +22,21 @@ router.get('/test', (req, res) => {
 router.use(protect);
 
 // Upload route must come before /:id route to avoid route conflicts
-router.post('/upload', async (req, res, next) => {
-  console.log('=== UPLOAD ROUTE HIT ===');
-  console.log('Method:', req.method);
-  console.log('Path:', req.path);
-  console.log('Original URL:', req.originalUrl);
-  console.log('Base URL:', req.baseUrl);
-  console.log('Has user:', !!req.user);
-  next();
-}, logAction('resume_uploaded'), upload.single('resume'), uploadResume);
+router.post('/upload', logAction('resume_uploaded'), upload.single('resume'), (req, res, next) => {
+  try {
+    // Log after Multer processes the request - Multer parses multipart/form-data
+    console.log('=== AFTER MULTER ===');
+    console.log('req.body keys:', Object.keys(req.body));
+    console.log('req.body.jobDescription exists:', !!req.body.jobDescription);
+    console.log('req.body.jobDescription length:', req.body.jobDescription?.length || 0);
+    console.log('req.body.jobDescription preview:', req.body.jobDescription?.substring(0, 100) || 'MISSING');
+    console.log('req.file:', req.file ? { name: req.file.originalname, size: req.file.size } : 'MISSING');
+    next();
+  } catch (error) {
+    console.error('Error in upload middleware:', error);
+    next(error);
+  }
+}, uploadResume);
 router.get('/my-resumes', getMyResumes);
 router.get('/job/:jobId', getResumesByJob);
 // Dynamic routes must come last

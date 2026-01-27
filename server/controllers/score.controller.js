@@ -1,4 +1,4 @@
-import { calculateScore } from '../services/scoring.service.js';
+import { calculateScore, calculateScoreFromJobDescription } from '../services/scoring.service.js';
 import Score from '../models/Score.model.js';
 import Resume from '../models/Resume.model.js';
 import AuditLog from '../models/AuditLog.model.js';
@@ -27,18 +27,81 @@ export const calculateResumeScore = async (req, res) => {
       });
     }
 
+    // Job Description is REQUIRED for ATS analysis
     // If jobId provided, use job-specific scoring
-    // Otherwise, use general scoring
+    // If jobDescription exists, use job description scoring
+    // Otherwise, reject the request
+    
+    console.log('=== calculateResumeScore START ===');
+    console.log('Request details:', {
+      resumeId,
+      jobId,
+      hasJobDescription: !!resume.jobDescription,
+      jobDescriptionType: typeof resume.jobDescription,
+      jobDescriptionLength: resume.jobDescription?.length || 0,
+      jobDescriptionPreview: resume.jobDescription?.substring(0, 100) || 'NULL'
+    });
+
+    const MIN_JOB_DESCRIPTION_LENGTH = 30;
     let score;
     try {
       if (jobId) {
+        console.log('Using jobId-based scoring');
         score = await calculateScore(resumeId, jobId);
+      } else if (resume.jobDescription) {
+        // Validate job description before using it
+        const jobDescType = typeof resume.jobDescription;
+        const jobDescTrimmed = jobDescType === 'string' ? resume.jobDescription.trim() : '';
+        
+        console.log('Validating job description:', {
+          type: jobDescType,
+          length: jobDescTrimmed.length,
+          minRequired: MIN_JOB_DESCRIPTION_LENGTH,
+          isValid: jobDescTrimmed.length >= MIN_JOB_DESCRIPTION_LENGTH
+        });
+
+        if (jobDescType !== 'string') {
+          console.error('Invalid job description type:', jobDescType);
+          return res.status(400).json({
+            success: false,
+            message: `Invalid job description format. Expected string, got ${jobDescType}.`
+          });
+        }
+
+        if (jobDescTrimmed.length < MIN_JOB_DESCRIPTION_LENGTH) {
+          console.warn('Job description too short:', {
+            length: jobDescTrimmed.length,
+            minRequired: MIN_JOB_DESCRIPTION_LENGTH
+          });
+          return res.status(400).json({
+            success: false,
+            message: `Job Description must be at least ${MIN_JOB_DESCRIPTION_LENGTH} characters. Current length: ${jobDescTrimmed.length}.`
+          });
+        }
+
+        // Use job description text for scoring
+        console.log('Calling calculateScoreFromJobDescription');
+        score = await calculateScoreFromJobDescription(resumeId, jobDescTrimmed);
+        console.log('Score calculated successfully:', {
+          scoreId: score._id,
+          finalScore: score.finalScore
+        });
       } else {
-        // General scoring without job requirements
-        score = await calculateGeneralScore(resumeId);
+        // Job description is REQUIRED - reject request
+        console.error('Job description missing from resume');
+        return res.status(400).json({
+          success: false,
+          message: 'Job Description is required for ATS analysis. Please provide a job description to analyze resume compatibility.'
+        });
       }
     } catch (scoreError) {
-      console.error('Score calculation error:', scoreError);
+      console.error('=== Score calculation error ===');
+      console.error('Error details:', {
+        message: scoreError.message,
+        stack: scoreError.stack,
+        resumeId,
+        hasJobDescription: !!resume.jobDescription
+      });
       throw new Error(`Score calculation failed: ${scoreError.message}`);
     }
 
@@ -55,12 +118,26 @@ export const calculateResumeScore = async (req, res) => {
       // Don't fail the request if audit logging fails
     }
 
+    console.log('=== calculateResumeScore SUCCESS ===');
+    console.log('Response:', {
+      scoreId: score._id,
+      finalScore: score.finalScore,
+      skillScore: score.skillScore,
+      experienceScore: score.experienceScore,
+      educationScore: score.educationScore
+    });
+
     res.json({
       success: true,
       data: { score }
     });
   } catch (error) {
-    console.error('Calculate score error:', error);
+    console.error('=== Calculate score error ===');
+    console.error('Error details:', {
+      message: error.message,
+      stack: error.stack,
+      resumeId: req.params.resumeId
+    });
     res.status(500).json({
       success: false,
       message: error.message || 'Server error'
