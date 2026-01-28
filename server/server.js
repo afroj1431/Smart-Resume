@@ -23,7 +23,7 @@ const app = express();
 
 // Middleware - CORS must be first
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://localhost:5173', 'https://smart-resume-theta.vercel.app'],
+  origin: ['http://localhost:3000', 'http://localhost:5173', 'https://smart-resume-theta.vercel.app', 'https://smart-resume-jkh9.onrender.com'],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin'],
