@@ -172,3 +172,5 @@ Final Score = (Skill Score × 0.60) + (Experience Score × 0.25) + (Education Sc
 
 ISC
 
+Email :- afrojshaikhhots@gmail.com
+LinkedIn :- https://www.linkedin.com/in/afroj-shaikh-1643681b7/
