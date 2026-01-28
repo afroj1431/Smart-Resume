@@ -21,9 +21,9 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 
-// Middleware - CORS must be first (allow all origins in development)
+// Middleware - CORS must be first
 app.use(cors({
-  origin: true, // Allow all origins in development
+  origin: ['http://localhost:3000', 'http://localhost:5173', 'https://smart-resume-theta.vercel.app'],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin'],
