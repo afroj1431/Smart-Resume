@@ -83,27 +83,27 @@ const Dashboard = () => {
 
   return (
     <DashboardLayout>
-      <div className="space-y-8">
+      <div className="space-y-6 sm:space-y-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="flex items-center justify-between"
+          className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"
         >
           <div>
-            <h1 className="text-4xl font-bold text-white mb-2">Dashboard</h1>
-            <p className="text-white/70 text-lg">Your personal AI career assistant</p>
+            <h1 className="text-3xl sm:text-4xl font-bold text-white mb-1 sm:mb-2">Dashboard</h1>
+            <p className="text-sm sm:text-base text-white/70">Your personal AI career assistant</p>
           </div>
           <Link
             to="/upload"
-            className="px-6 py-3 bg-gradient-to-r from-indigo-600 to-primary-600 text-white rounded-xl hover:from-indigo-700 hover:to-primary-700 transition-all font-semibold shadow-2xl hover:shadow-indigo-500/50 transform hover:scale-105"
+            className="px-4 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-indigo-600 to-primary-600 text-white rounded-lg sm:rounded-xl hover:from-indigo-700 hover:to-primary-700 transition-all font-semibold shadow-2xl hover:shadow-indigo-500/50 transform hover:scale-105 text-xs sm:text-base whitespace-nowrap text-center sm:text-left"
           >
             Upload New Resume
           </Link>
         </motion.div>
 
         {/* Summary Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -136,6 +136,7 @@ const Dashboard = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
+            className="sm:col-span-2 lg:col-span-1"
           >
             <DashboardCard
               title="Average Score"
@@ -153,42 +154,42 @@ const Dashboard = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-white/10 backdrop-blur-xl rounded-2xl p-8 border border-white/20 shadow-2xl"
+            className="bg-white/10 backdrop-blur-xl rounded-xl sm:rounded-2xl p-4 sm:p-8 border border-white/20 shadow-2xl"
           >
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
               <div>
-                <h2 className="text-3xl font-bold text-white mb-2">Your Latest ATS Score</h2>
-                <p className="text-white/70 text-lg">Keep improving to increase your chances!</p>
+                <h2 className="text-2xl sm:text-3xl font-bold text-white mb-1 sm:mb-2">Your Latest ATS Score</h2>
+                <p className="text-xs sm:text-base text-white/70">Keep improving to increase your chances!</p>
               </div>
               <motion.div
                 animate={{ rotate: [0, 5, -5, 0] }}
                 transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
-                className={`w-32 h-32 rounded-full bg-gradient-to-br ${getScoreColor(stats.latestScore.finalScore)} flex items-center justify-center shadow-2xl`}
+                className={`w-24 sm:w-32 h-24 sm:h-32 rounded-full bg-gradient-to-br ${getScoreColor(stats.latestScore.finalScore)} flex items-center justify-center shadow-2xl flex-shrink-0 mx-auto lg:mx-0`}
               >
                 <div className="text-center">
-                  <div className="text-5xl font-bold text-white">{stats.latestScore.finalScore}</div>
-                  <div className="text-white/80 text-sm">out of 100</div>
+                  <div className="text-4xl sm:text-5xl font-bold text-white">{stats.latestScore.finalScore}</div>
+                  <div className="text-xs sm:text-sm text-white/80">/ 100</div>
                 </div>
               </motion.div>
             </div>
-            <div className="grid md:grid-cols-3 gap-4">
-              <div className="bg-white/10 backdrop-blur-md rounded-xl p-5 border border-white/20">
-                <p className="text-sm text-white/70 mb-1">Skills</p>
-                <p className="text-3xl font-bold text-white">{stats.latestScore.skillScore}%</p>
+            <div className="grid grid-cols-3 gap-2 sm:gap-4 mt-6">
+              <div className="bg-white/10 backdrop-blur-md rounded-lg sm:rounded-xl p-3 sm:p-5 border border-white/20">
+                <p className="text-xs sm:text-sm text-white/70 mb-1">Skills</p>
+                <p className="text-2xl sm:text-3xl font-bold text-white">{stats.latestScore.skillScore}%</p>
               </div>
-              <div className="bg-white/10 backdrop-blur-md rounded-xl p-5 border border-white/20">
-                <p className="text-sm text-white/70 mb-1">Experience</p>
-                <p className="text-3xl font-bold text-white">{stats.latestScore.experienceScore}%</p>
+              <div className="bg-white/10 backdrop-blur-md rounded-lg sm:rounded-xl p-3 sm:p-5 border border-white/20">
+                <p className="text-xs sm:text-sm text-white/70 mb-1">Experience</p>
+                <p className="text-2xl sm:text-3xl font-bold text-white">{stats.latestScore.experienceScore}%</p>
               </div>
-              <div className="bg-white/10 backdrop-blur-md rounded-xl p-5 border border-white/20">
-                <p className="text-sm text-white/70 mb-1">Education</p>
-                <p className="text-3xl font-bold text-white">{stats.latestScore.educationScore}%</p>
+              <div className="bg-white/10 backdrop-blur-md rounded-lg sm:rounded-xl p-3 sm:p-5 border border-white/20">
+                <p className="text-xs sm:text-sm text-white/70 mb-1">Education</p>
+                <p className="text-2xl sm:text-3xl font-bold text-white">{stats.latestScore.educationScore}%</p>
               </div>
             </div>
-            <div className="mt-6">
+            <div className="mt-4 sm:mt-6">
               <Link
                 to={`/analyzer/${stats.latestScore.resumeId}`}
-                className="inline-block px-6 py-3 bg-gradient-to-r from-indigo-600 to-primary-600 text-white rounded-xl hover:from-indigo-700 hover:to-primary-700 transition-all font-semibold shadow-lg hover:shadow-indigo-500/50 transform hover:scale-105"
+                className="inline-block px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-indigo-600 to-primary-600 text-white rounded-lg sm:rounded-xl hover:from-indigo-700 hover:to-primary-700 transition-all font-semibold shadow-lg hover:shadow-indigo-500/50 transform hover:scale-105 text-xs sm:text-base"
               >
                 View Full Analysis →
               </Link>
@@ -201,14 +202,14 @@ const Dashboard = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
-          className="bg-white/10 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/20 p-6"
+          className="bg-white/10 backdrop-blur-xl rounded-xl sm:rounded-2xl shadow-2xl border border-white/20 p-4 sm:p-6"
         >
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-bold text-white">Recent Analysis</h2>
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4 sm:mb-6">
+            <h2 className="text-xl sm:text-2xl font-bold text-white">Recent Analysis</h2>
             {stats.recentResumes.length > 0 && (
               <Link
                 to="/my-resumes"
-                className="text-sm text-white/80 hover:text-white font-semibold transition-colors"
+                className="text-xs sm:text-sm text-white/80 hover:text-white font-semibold transition-colors"
               >
                 View all →
               </Link>
@@ -224,7 +225,7 @@ const Dashboard = () => {
               actionLink="/upload"
             />
           ) : (
-            <div className="space-y-3">
+            <div className="space-y-2 sm:space-y-3">
               {stats.recentResumes.map((resume, index) => (
                 <motion.div
                   key={resume._id}
@@ -234,20 +235,20 @@ const Dashboard = () => {
                 >
                   <Link
                     to={`/analyzer/${resume._id}`}
-                    className="block p-4 bg-white/5 backdrop-blur-md border border-white/10 rounded-xl hover:bg-white/10 hover:border-white/30 transition-all duration-200 group"
+                    className="block p-3 sm:p-4 bg-white/5 backdrop-blur-md border border-white/10 rounded-lg sm:rounded-xl hover:bg-white/10 hover:border-white/30 transition-all duration-200 group"
                   >
-                    <div className="flex items-center justify-between">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                       <div className="flex-1">
-                        <h3 className="font-semibold text-white group-hover:text-indigo-300 transition-colors">
+                        <h3 className="font-semibold text-sm sm:text-base text-white group-hover:text-indigo-300 transition-colors line-clamp-1">
                           {resume.candidateName || resume.fileName}
                         </h3>
-                        <p className="text-sm text-white/60 mt-1">
-                          {new Date(resume.createdAt).toLocaleDateString()} • {resume.extractedSkills?.length || 0} skills detected
+                        <p className="text-xs sm:text-sm text-white/60 mt-1">
+                          {new Date(resume.createdAt).toLocaleDateString()} • {resume.extractedSkills?.length || 0} skills
                         </p>
                       </div>
-                      <div className="flex items-center space-x-3">
+                      <div className="flex items-center space-x-2 sm:space-x-3">
                         {resume.score && (
-                          <div className={`px-3 py-1 rounded-full text-xs font-bold ${
+                          <div className={`px-2 sm:px-3 py-1 rounded-full text-xs font-bold flex-shrink-0 ${
                             resume.score.finalScore >= 80
                               ? 'bg-gradient-to-r from-green-500 to-emerald-500 text-white'
                               : resume.score.finalScore >= 60
@@ -257,7 +258,7 @@ const Dashboard = () => {
                             {resume.score.finalScore}%
                           </div>
                         )}
-                        <svg className="w-5 h-5 text-white/40 group-hover:text-indigo-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-4 sm:w-5 h-4 sm:h-5 text-white/40 group-hover:text-indigo-300 transition-colors flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                         </svg>
                       </div>
@@ -274,33 +275,33 @@ const Dashboard = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
-          className="grid md:grid-cols-2 gap-6"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6"
         >
           <Link
             to="/matches"
-            className="bg-white/10 backdrop-blur-xl rounded-2xl p-6 border border-white/20 hover:border-white/40 hover:shadow-2xl transition-all group transform hover:scale-105"
+            className="bg-white/10 backdrop-blur-xl rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/20 hover:border-white/40 hover:shadow-2xl transition-all group transform hover:scale-105"
           >
-            <div className="flex items-center space-x-4">
-              <div className="text-5xl">🔍</div>
-              <div>
-                <h3 className="text-xl font-bold text-white group-hover:text-primary-300 transition-colors">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+              <div className="text-4xl sm:text-5xl flex-shrink-0">🔍</div>
+              <div className="min-w-0">
+                <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-primary-300 transition-colors">
                   Find Job Matches
                 </h3>
-                <p className="text-white/70 mt-1">Discover jobs that match your resume</p>
+                <p className="text-xs sm:text-base text-white/70 mt-1">Discover jobs that match your resume</p>
               </div>
             </div>
           </Link>
           <Link
             to="/tips"
-            className="bg-white/10 backdrop-blur-xl rounded-2xl p-6 border border-white/20 hover:border-white/40 hover:shadow-2xl transition-all group transform hover:scale-105"
+            className="bg-white/10 backdrop-blur-xl rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/20 hover:border-white/40 hover:shadow-2xl transition-all group transform hover:scale-105"
           >
-            <div className="flex items-center space-x-4">
-              <div className="text-5xl">💡</div>
-              <div>
-                <h3 className="text-xl font-bold text-white group-hover:text-indigo-300 transition-colors">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+              <div className="text-4xl sm:text-5xl flex-shrink-0">💡</div>
+              <div className="min-w-0">
+                <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-indigo-300 transition-colors">
                   Get Resume Tips
                 </h3>
-                <p className="text-white/70 mt-1">Learn how to improve your resume</p>
+                <p className="text-xs sm:text-base text-white/70 mt-1">Learn how to improve your resume</p>
               </div>
             </div>
           </Link>

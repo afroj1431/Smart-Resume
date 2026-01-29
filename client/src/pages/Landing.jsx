@@ -62,23 +62,23 @@ const Landing = () => {
 
       {/* Navbar */}
       <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-white/10 border-b border-white/20">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <h1 className="text-2xl font-bold text-white">TalentScan AI</h1>
-          <div className="hidden md:flex items-center space-x-8">
-            <Link to="/upload" className="text-white/80 hover:text-white transition-colors text-sm font-medium">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between gap-2">
+          <h1 className="text-xl sm:text-2xl font-bold text-white">TalentScan AI</h1>
+          <div className="hidden md:flex items-center space-x-6 sm:space-x-8">
+            <Link to="/upload" className="text-white/80 hover:text-white transition-colors text-xs sm:text-sm font-medium">
               Analyze Resume
             </Link>
-            <Link to="/matches" className="text-white/80 hover:text-white transition-colors text-sm font-medium">
+            <Link to="/matches" className="text-white/80 hover:text-white transition-colors text-xs sm:text-sm font-medium">
               Job Matches
             </Link>
-            <Link to="/tips" className="text-white/80 hover:text-white transition-colors text-sm font-medium">
+            <Link to="/tips" className="text-white/80 hover:text-white transition-colors text-xs sm:text-sm font-medium">
               Tips
             </Link>
           </div>
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-2 sm:space-x-4">
             <Link
               to="/upload"
-              className="px-6 py-2 bg-white text-indigo-600 rounded-lg hover:bg-white/90 transition-all font-medium text-sm shadow-lg"
+              className="px-3 sm:px-6 py-2 bg-white text-indigo-600 rounded-lg hover:bg-white/90 transition-all font-medium text-xs sm:text-sm shadow-lg whitespace-nowrap"
             >
               Get Started
             </Link>
@@ -87,9 +87,9 @@ const Landing = () => {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 lg:pb-32 min-h-screen flex items-center">
-        <div className="max-w-7xl mx-auto px-6 w-full">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <section className="relative pt-20 sm:pt-32 pb-12 sm:pb-20 lg:pb-32 min-h-screen flex items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
             {/* Left Content */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -101,14 +101,14 @@ const Landing = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="inline-block mb-6"
+                className="inline-block mb-4 sm:mb-6"
               >
-                <span className="px-4 py-2 bg-white/20 backdrop-blur-md rounded-full text-white text-sm font-medium border border-white/30">
+                <span className="px-3 sm:px-4 py-1.5 sm:py-2 bg-white/20 backdrop-blur-md rounded-full text-white text-xs sm:text-sm font-medium border border-white/30">
                   ✨ Powered by AI
                 </span>
               </motion.div>
               
-              <h1 className="text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight">
                 Know How Strong{' '}
                 <span className="bg-gradient-to-r from-blue-200 via-indigo-200 to-navy-200 bg-clip-text text-transparent">
                   Your Resume
@@ -116,15 +116,15 @@ const Landing = () => {
                 Really Is
               </h1>
               
-              <p className="text-xl lg:text-2xl text-white/90 mb-10 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 mb-6 sm:mb-10 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
                 Get instant ATS score, skill gap analysis, and personalized job matches. 
                 Make your resume stand out with AI-powered insights.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
                 <Link
                   to="/upload"
-                  className="group relative px-8 py-4 bg-white text-indigo-600 rounded-xl hover:bg-white/95 transition-all font-semibold text-lg shadow-2xl hover:shadow-3xl transform hover:-translate-y-1 overflow-hidden"
+                  className="group relative px-6 sm:px-8 py-3 sm:py-4 bg-white text-indigo-600 rounded-lg sm:rounded-xl hover:bg-white/95 transition-all font-semibold text-sm sm:text-base lg:text-lg shadow-2xl hover:shadow-3xl transform hover:-translate-y-1 overflow-hidden text-center"
                 >
                   <span className="relative z-10">Upload Your Resume</span>
                   <motion.div
@@ -134,7 +134,7 @@ const Landing = () => {
                 </Link>
                 <Link
                   to="/upload"
-                  className="px-8 py-4 bg-white/10 backdrop-blur-md text-white rounded-xl hover:bg-white/20 transition-all font-semibold text-lg border-2 border-white/30"
+                  className="px-6 sm:px-8 py-3 sm:py-4 bg-white/10 backdrop-blur-md text-white rounded-lg sm:rounded-xl hover:bg-white/20 transition-all font-semibold text-sm sm:text-base lg:text-lg border-2 border-white/30 text-center"
                 >
                   Get Started
                 </Link>
@@ -146,7 +146,7 @@ const Landing = () => {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="relative h-[600px] lg:h-[700px]"
+              className="relative h-[400px] sm:h-[500px] lg:h-[700px] hidden sm:block"
             >
               {/* AI Orb / Robot */}
               <motion.div
